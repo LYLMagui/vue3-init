@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue": "^3.4.19"
   },
   "devDependencies": {
@@ -17,6 +16,7 @@
     "@volar-plugins/vetur": "^2.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^1.8.27"
   }
 }
