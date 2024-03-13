@@ -1,28 +1,26 @@
 <template>
-  <div class="person">
-    <h4>姓名：{{ name }}</h4>
-    <h4>年龄：{{ age }}</h4>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="showTel">查看联系方式</button>
+  <div class="game">
+    <h2>游戏列表：</h2>
+    <ul>
+      <li v-for='g in games' :key='g.id'>{{ g.name }}</li>
+    </ul>
+    <button @click="changeGameName">改变游戏名</button>
   </div>
 </template>
 
-<script lang="ts" setup name="person">
-import { ref } from "vue";
+<script lang="ts" setup name="game">
+import { reactive } from 'vue';
 
-// 需要响应式的数据才使用ref()
-let name = ref("张三");
-let age = ref(18);
-let tel = 1388888888;
+// 使用reactive()创建响应式对象
+let games = reactive([
+  { id: "g1", name: "战地5" },
+  { id: "g2", name: "梦幻西游" },
+  { id: "g3", name: "原神" },
+])
 
-function changeName() {
-  name.value = "zhang-san";
+function changeGameName() {
+  games[0].name = "我被笨蛋美女包围了！"
 }
-function changeAge() {
-  age.value += 1;
-}
-function showTel() {
-  alert(tel);
-}
+
+
 </script>
