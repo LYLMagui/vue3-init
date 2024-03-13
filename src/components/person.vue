@@ -8,18 +8,21 @@
   </div>
 </template>
 
-<script lang="ts" setup name = "person">
-let name = "张三"
-let age = 18
-let tel = 1388888888
+<script lang="ts" setup name="person">
+import { ref } from "vue";
+
+// 需要响应式的数据才使用ref()
+let name = ref("张三");
+let age = ref(18);
+let tel = 1388888888;
 
 function changeName() {
-  name = "zhang-san"
+  name.value = "zhang-san";
 }
 function changeAge() {
-  age += 1
+  age.value += 1;
 }
 function showTel() {
-  alert(tel)
+  alert(tel);
 }
 </script>
