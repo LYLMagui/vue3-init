@@ -9,18 +9,16 @@
 </template>
 
 <script lang="ts" setup name="game">
-import { reactive } from 'vue';
+import { ref } from 'vue';
 
-// 使用reactive()创建响应式对象
-let games = reactive([
+// 使用ref创建响应式对象
+let games = ref([
   { id: "g1", name: "战地5" },
   { id: "g2", name: "梦幻西游" },
   { id: "g3", name: "原神" },
 ])
 
 function changeGameName() {
-  games[0].name = "我被笨蛋美女包围了！"
+  games.value[0].name = "我被笨蛋美女包围了！"
 }
-
-
 </script>
