@@ -8,34 +8,18 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "person",
-  data() {
-    return {
-      //可以读取到setup里的数据
-      a: this.name
-    }
-  },
-  setup() {
-    //数据
-    let name = "张三"
-    let age = 19
-    let tel = 1388888888
+<script lang="ts" setup name = "person">
+let name = "张三"
+let age = 18
+let tel = 1388888888
 
-    //方法
-    function changeName() {
-      name = "zhang-san"
-    }
-    function changeAge() {
-      age += 1
-    }
-    function showTel() {
-      alert(tel)
-    }
-    return { name, age, changeName, changeAge, showTel }
-    //setup的返回值也可以是一个渲染函数
-    //return () => "setup渲染的函数"
-  }
-};
+function changeName() {
+  name = "zhang-san"
+}
+function changeAge() {
+  age += 1
+}
+function showTel() {
+  alert(tel)
+}
 </script>
