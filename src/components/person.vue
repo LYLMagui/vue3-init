@@ -1,39 +1,45 @@
 <template>
   <div class="person">
-    <h1>情况一：监视ref定义的基本类型数据：直接写数据名即可，监视的是其`value`值的改变。</h1>
-    <h2>求和：{{ sum }}</h2>
-    <button @click="changeSum">点我加1</button><br>
-    <h3>旧的sum值：{{ oldVal }}，新的sum值：{{ newVal }}</h3>
-    <h3>{{ tips }}</h3>
-    
+    <h1>情况二：监视ref定义的对象类型数据：直接写数据名，监视的是对象的地址值，若想要监视对象内部的数据，要手动开启深度监视。</h1>
+    <h2>姓名：{{ person.name }}</h2>
+    <h2>年龄：{{ person.age }}</h2>
+    <button @click="changeName">修改姓名</button>
+    <button @click="changeAge">修改年龄</button>
+    <button @click="changePerson">修改人</button>
   </div>
 </template>
 
 <script lang="ts" setup name="person">
-import {ref,watch} from 'vue'
+import { ref, watch } from 'vue'
 
 /** @@数据@@ */
-let sum = ref(0);
-let tips = ref("")
-let newVal = ref(0)
-let oldVal = ref(0)
+
+let person = ref({
+  name: "张三",
+  age: 18
+})
 
 /** @@方法@@*/
-function changeSum() {
-  sum.value += 1
+function changeName() {
+  person.value.name += '~'
 }
-
-// 情况一：监视ref定义的基本类型数据：直接写数据名即可，监视的是其`value`值的改变。
-// watch()的返回值是一个函数，是用于停止监视
-const stopWatch = watch(sum, (newValue,oldValue) => {
-  console.log("值变化了：",newValue,oldValue)
-  newVal.value = newValue
-  oldVal.value = oldValue
-  if (newValue >= 10) {
-    stopWatch()
-    tips.value = "停止监视"
+function changeAge() {
+  person.value.age += 1
+}
+function changePerson() {
+  person.value = {
+    name: "李四",
+    age: 10
   }
-}) 
 
+  // 直接写数据名，监视的是对象的地址值，若想要监视对象内部的数据，要手动开启深度监视。
+  // watch的第一个参数是：被监视的数据
+  // watch的第二个参数是：监视的回调
+  // watch的第三个参数是：配置对象（deep、immediate等等）
+  let stopWatch = watch(person, (newValue, oldValue) => {
+    console.log("person变化了", newValue, oldValue);
+    //deep:true是开启深度监视,immediate是开启初始时就监视
+  }, { deep: true, immediate:false })
+}
 
 </script>
