@@ -1,32 +1,25 @@
 <template>
   <div class="person">
-    <h2>水位达到60或水温达到80度则通知服务器</h2>
-    <h2>当前水位：{{ hight }}cm</h2>
-    <h2>当前水温：{{ temp }}℃</h2>
-    <button @click="addHight">增加水位</button>
-    <button @click="addTemp">增加水温</button>
+    <h1 ref="title1">星谷</h1>
+    <h2>长空</h2>
+    <button @click="showLog">点击获取h1</button>
   </div>
 </template>
 
 <script lang="ts" setup name="person">
-import { ref,reactive,watchEffect } from "vue"
+import { ref,defineExpose} from "vue"
+// 数据
+let title1 = ref()
+let a = ref(0)
+let b = ref(1)
+let c = ref(2)
 
-//数据
-let temp = ref(0)
-let hight = ref(0)
-
-//方法
-function addHight(){
-  hight.value += 10
-}
-function addTemp(){
-  temp.value += 10
+// 方法
+function showLog() {
+  console.log(title1.value)
 }
 
-watchEffect(() => {
-  if (temp.value >= 80 || hight.value >= 60) {
-    console.log("给服务器发送请求")
-  }
-})
+// 将组件定义的变量暴露出去，使父组件可以获取
+defineExpose({a,b,c})
 
 </script>

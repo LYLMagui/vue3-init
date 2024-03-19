@@ -1,16 +1,21 @@
 <template>
   <div class="app">
     <h1>Hello World!</h1>
-    <person />
+    <button @click="showLog">打印person组件</button>
+    <person ref="ren" />
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup="App">
 import person from "./components/person.vue";
-export default {
-  name: "App",
-  components: { person }, //注册组件
-};
+import {ref} from "vue"
+
+let ren = ref()
+
+function showLog() {
+  console.log(ren.value)
+}
+
 </script>
 
 <style>
