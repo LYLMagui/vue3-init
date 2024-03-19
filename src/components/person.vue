@@ -1,54 +1,32 @@
 <template>
   <div class="person">
-    <h2>姓名：{{ person.name }}</h2>
-    <h2>年龄：{{ person.age }}</h2>
-    <h2>汽车：{{ person.car.c1 }}、{{ person.car.c2 }}</h2>
-    <button @click="changeName">修改姓名</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="changeC1">修改第一辆车</button>
-    <button @click="changeC2">修改第二辆车</button>
-    <button @click="changeCar">修改车</button>
+    <h2>水位达到60或水温达到80度则通知服务器</h2>
+    <h2>当前水位：{{ hight }}cm</h2>
+    <h2>当前水温：{{ temp }}℃</h2>
+    <button @click="addHight">增加水位</button>
+    <button @click="addTemp">增加水温</button>
   </div>
 </template>
 
 <script lang="ts" setup name="person">
-import { reactive, watch } from 'vue'
+import { ref,reactive,watchEffect } from "vue"
 
 //数据
-let person = reactive({
-  name: "张三",
-  age: 18,
-  car: {
-    c1: "迈巴赫",
-    c2: "路虎"
-  }
-})
+let temp = ref(0)
+let hight = ref(0)
 
 //方法
+function addHight(){
+  hight.value += 10
+}
+function addTemp(){
+  temp.value += 10
+}
 
-function changeName() {
-  person.name += "~"
-}
-function changeAge() {
-  person.age += 1
-}
-function changeC1() {
-  person.car.c1 = "雅迪"
-}
-function changeC2() {
-  person.car.c2 = "爱玛"
-}
-function changeCar() {
-  person.car = {
-    c1: "小牛",
-    c2: "九号"
+watchEffect(() => {
+  if (temp.value >= 80 || hight.value >= 60) {
+    console.log("给服务器发送请求")
   }
-}
-
-
-//情况五：监视上述所有情况
-watch([() => person.name, () => person.car.c1], (newValue,OldValue) => {
-  console.log("数据改变了",newValue,OldValue)
 })
 
 </script>
