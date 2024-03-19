@@ -45,15 +45,10 @@ function changeCar() {
   }
 }
 
-// 只监视对象中的一个值，因为监视只能是一个函数，ref对象，除此之外的类型都要写成getter函数形式，() => {return xxx}
-watch(() => person.name, (newValue, OldValue) =>{
-  console.log("值变化了",newValue,OldValue)
-}) 
 
-// 若监视的是对象中的对象，可以直接写person.car，也可以写成函数形式 () => person.car,建议写成函数形式
-// 若想要监视整个对象及对象内的属性的变化，就需要开启深度监视选项
-watch(() =>  person.car, (newValue,OldValue) => {
-  console.log("换车啦",newValue,OldValue)
-},{deep:true})
+//情况五：监视上述所有情况
+watch([() => person.name, () => person.car.c1], (newValue,OldValue) => {
+  console.log("数据改变了",newValue,OldValue)
+})
 
 </script>
