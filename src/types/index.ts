@@ -3,7 +3,8 @@ export interface PersonInter {
   id: string;
   name: string;
   age: number;
+  x?: number;
 }
 
 // 使用泛型自定义一个类型
-export type Persons =  Array<PersonInter>
+export type Persons = Array<PersonInter>;
