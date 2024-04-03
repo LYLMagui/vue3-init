@@ -4,9 +4,10 @@
     <!-- 导航 -->
     <div class="navigate">
       <!-- 路由跳转 -->
-      <RouterLink to="/person" active-class="active">首页</RouterLink>
-      <RouterLink to="/person2" active-class="active" >新闻</RouterLink>
-      <RouterLink to="/person3" active-class="active" >关于</RouterLink>
+      <!-- 路由to的三种不同写法 -->
+      <RouterLink :to="{ name:'littlePerson'}" active-class="active">首页</RouterLink>
+      <RouterLink to="/news" active-class="active">新闻</RouterLink>
+      <RouterLink :to="{path:'person3'}" active-class="active">关于</RouterLink>
     </div>
     <!-- 展示区 -->
     <div class="main-content">
@@ -84,11 +85,14 @@ body{
 
 
 .main-content{
+  display: flex;
   align-self: center;
   width: 1000px;
   border-radius: 6px;
   border: 1px solid black;
   height: 70%;
+  box-sizing: border-box;
+  align-items: stretch;
 }
 
 </style>
