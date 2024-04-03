@@ -3,21 +3,21 @@
     <!-- 导航区 -->
     <ul>
       <li v-for="news in newList" :key="news.id">
-        <!-- 路由传参 -->
-        <!-- 第一种写法 -->
-        <!-- <router-link :to="`/news/newDetail?id=${news.id}&title=${news.title}&content=${news.content}`">{{ news.title }}</router-link> -->
+        <!-- 路由传参 params传参-->
+        <!-- 第一种方法 -->
+        <!-- <router-link :to="`/news/newDetail/${news.id}/${news.title}/${news.content}`">{{ news.title
+          }}</router-link> -->
 
-        <!-- 第二种写法 -->
-        <router-link :to="{
-          path: '/news/newDetail',
-          query: {
-            id: news.id,
-            title: news.title,
-            content: news.content
-          }
-        }">
-          {{ news.title }}
-        </router-link>
+        <!-- 第二种方法 -->
+        <!-- 使用这种方法必须在路由组件配置中定义name属性，params传参只能使用name找路由，不能使用path找路径 -->
+        <RouterLink :to="{
+        name: 'new-Detail',
+        params: {
+          id: news.id,
+          title: news.title,
+          content: news.content
+        }
+      }">{{ news.title }}</RouterLink>
       </li>
     </ul>
     <!-- 展示区 -->
@@ -30,6 +30,7 @@
 </template>
 
 <script lang="ts" setup name="News">
+
 import { reactive } from 'vue';
 
 const newList = reactive([
@@ -54,7 +55,6 @@ ul {
 }
 
 li {
-  list-style: none;
   margin-bottom: 30px;
 }
 
@@ -69,5 +69,9 @@ a {
   flex-grow: 1;
   border-radius: 5px;
 
+}
+
+li::marker {
+  color: #8DB442;
 }
 </style>

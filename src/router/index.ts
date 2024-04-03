@@ -1,10 +1,7 @@
 // 1.引入路由
 import { createRouter, createWebHistory } from "vue-router";
 // 2.引入要可以呈现的组件
-import Person from "../pages/person.vue";
-import News from "../pages/News.vue";
-import Person3 from "../pages/person3.vue";
-import newDetail from "../pages/newDetail.vue";
+
 
 const router = createRouter({
   history: createWebHistory(), // 路由器的工作模式
@@ -12,21 +9,23 @@ const router = createRouter({
     {
       name: "littlePerson",
       path: "/person",
-      component: Person,
+      component: () => import("../pages/person.vue"),
     },
     {
       path: "/News",
-      component: News,
+      component: () => import("../pages/News.vue"),
       children: [
         {
-          path: "newDetail",
-          component: newDetail
-        }
-      ]
+          // /:xx 是参数占位
+          name: "new-Detail",
+          path: "newDetail/:id/:title/:content",
+          component: () => import("../pages/newDetail.vue"),
+        },
+      ],
     },
     {
       path: "/person3",
-      component: Person3,
+      component: () => import("../pages/person3.vue"),
     },
   ],
 });
