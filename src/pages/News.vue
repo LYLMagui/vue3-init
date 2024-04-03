@@ -3,7 +3,21 @@
     <!-- 导航区 -->
     <ul>
       <li v-for="news in newList" :key="news.id">
-        <router-link to="/news/newDetail">{{ news.title }}</router-link>
+        <!-- 路由传参 -->
+        <!-- 第一种写法 -->
+        <!-- <router-link :to="`/news/newDetail?id=${news.id}&title=${news.title}&content=${news.content}`">{{ news.title }}</router-link> -->
+
+        <!-- 第二种写法 -->
+        <router-link :to="{
+          path: '/news/newDetail',
+          query: {
+            id: news.id,
+            title: news.title,
+            content: news.content
+          }
+        }">
+          {{ news.title }}
+        </router-link>
       </li>
     </ul>
     <!-- 展示区 -->
@@ -25,7 +39,7 @@ const newList = reactive([
 ]);
 </script>
 <style scoped>
-.news{
+.news {
   width: 100%;
   display: flex;
   margin: 15px 15px;
@@ -33,21 +47,24 @@ const newList = reactive([
   align-items: stretch;
   padding: 20px;
 }
-ul{
+
+ul {
   padding: 50px 10px 0 10px;
   margin: 0;
 }
-li{
+
+li {
   list-style: none;
   margin-bottom: 30px;
 }
-a{
+
+a {
   text-decoration-line: none;
   color: #8DB442;
-  
+
 }
 
-.news-content{
+.news-content {
   border: 1px solid black;
   flex-grow: 1;
   border-radius: 5px;
