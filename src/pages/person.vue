@@ -12,10 +12,18 @@
 // 引入hooks
 import useSum from '../hooks/useSum';
 import useDog from '../hooks/useDog';
+import { useRouter } from 'vue-router';
 
 // 解构对象
 const { dogList, getDog } = useDog()
 const { sum, add } = useSum()
+
+const router = useRouter()
+
+// 自动路由跳转
+setTimeout(() => {
+  router.push('/news')
+}, 3000);
 
 </script>
 <style scoped>

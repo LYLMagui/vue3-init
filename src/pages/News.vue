@@ -10,6 +10,8 @@
 
         <!-- 第二种方法 -->
         <!-- 使用这种方法必须在路由组件配置中定义name属性，params传参只能使用name找路由，不能使用path找路径 -->
+
+        <button @click="showNewsDetail(news)"></button>
         <RouterLink :to="{
         name: 'new-Detail',
         params: {
@@ -32,12 +34,31 @@
 <script lang="ts" setup name="News">
 
 import { reactive } from 'vue';
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const newList = reactive([
-  { id: 1, title: '今年清明节居然放假这么多……', content: "今年清明节居然放假这么多天" },
-  { id: 2, title: '中秋节的月亮……', content: "中秋节的月亮居然这么大" },
-  { id: 3, title: '国庆节居然有这种活动……', content: "国庆节居然有这种活动，太令人惊讶了" },
+  { id: '1', title: '今年清明节居然放假这么多……', content: "今年清明节居然放假这么多天" },
+  { id: '2', title: '中秋节的月亮……', content: "中秋节的月亮居然这么大" },
+  { id: '3', title: '国庆节居然有这种活动……', content: "国庆节居然有这种活动，太令人惊讶了" },
 ]);
+
+// ts语法检查，要给参数做一下限制
+interface NewsInterface {
+  id: string,
+  title: string,
+  content: string
+}
+
+function showNewsDetail(news: NewsInterface) {
+  router.push({
+    name: 'new-Detail',
+    params: {
+      id: news.id,
+      title: news.title,
+      content: news.content
+    }
+  })
+}
 </script>
 <style scoped>
 .news {
