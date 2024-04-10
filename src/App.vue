@@ -5,7 +5,7 @@
     <div class="navigate">
       <!-- 路由跳转 -->
       <!-- 路由to的三种不同写法 -->
-      <RouterLink :to="{ name:'littlePerson'}" active-class="active">首页</RouterLink>
+      <RouterLink replace :to="{ name:'littlePerson'}" active-class="active">首页</RouterLink>
       <RouterLink to="/news" active-class="active">新闻</RouterLink>
       <RouterLink :to="{path:'person3'}" active-class="active">关于</RouterLink>
     </div>
