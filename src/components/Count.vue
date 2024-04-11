@@ -19,8 +19,18 @@ const countStore = useCountStore()
 
 let n = ref(0);
 
-function add(){
+function add() {
+	// 第一种修改方式
 	countStore.sum += n.value;
+
+	// 第二种修改方式：批量修改
+	// countStore.$patch({
+	// 	sum: 123
+	// })
+
+	// 第三种修改方式
+		countStore.incremnet(n.value)
+	
 	// sum.value += n.value;
 }
 function minus() {
