@@ -2,26 +2,26 @@
 	<div class="love-words">
 		<button @click="addOne">加一句</button>
 		<ul>
-			<li v-for="word in words" :key="word.id">{{ word.hitokoto }} -- {{ word.from }}</li>
+			<li v-for="word in loveWordsStore.words" :key="word.id">{{ word.hitokoto }} -- {{ word.from }}</li>
 		</ul>
 	</div>
 
 </template>
 
 <script lang="ts" setup name="LoveWords">
-import { reactive } from 'vue'
+
+import {useLoveWordsStore} from '../store/loveWords'
 import axios from 'axios'
-let words = reactive([
-	{ "id": '5655', "hitokoto": "昔去雪如花，今来花似雪。", "from": "别诗" },
-	{ "id": '5085', "hitokoto": "梦如同黎明的泡沫一样渐渐消失。", "from": "幽兰黛尔" }
-])
+
+const loveWordsStore = useLoveWordsStore();
+
 
 async function addOne() {
 	// 连续解构 + 重命名
 	let { data:res } = await axios.get('https://international.v1.hitokoto.cn/')
 	
 	let obj = { "id": res.id, "hitokoto": res.hitokoto, "from": res.from} 
-	words.unshift(obj);
+	loveWordsStore.words.unshift(obj)
 }
 
 </script>
