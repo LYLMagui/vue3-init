@@ -1,6 +1,6 @@
 <template>
 	<div class="count">
-		<h2>当前求和为：{{countStore.sum}}</h2>
+		<h2>当前求和为：{{sum}}</h2>
 		<select v-model.number="n">
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -13,9 +13,14 @@
 <script lang="ts" setup name="Count">
 import { ref } from 'vue';
 import { useCountStore } from '../store/count';
+import { storeToRefs } from 'pinia';
 
 // 在countStore中的ref对象可以直接使用不需要添加.value
 const countStore = useCountStore()
+
+// 使用storeToRefs来实现响应式结构赋值，使用toRefs也可以实现，但是toRefs会输出store中的所有值和方法，会影响性能
+const { sum } = storeToRefs(countStore)
+
 
 let n = ref(0);
 
