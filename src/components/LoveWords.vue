@@ -14,6 +14,12 @@ import {useLoveWordsStore} from '../store/loveWords'
 import axios from 'axios'
 
 const loveWordsStore = useLoveWordsStore();
+console.log(loveWordsStore.words);
+// 监听store里的数据变化
+loveWordsStore.$subscribe((mutate, state) => {
+	localStorage.setItem('loveWords', JSON.stringify(state.words))
+})
+
 
 
 async function addOne() {
