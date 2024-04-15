@@ -10,8 +10,8 @@
 
 <script lang="ts" setup name="LoveWords">
 
-import {useLoveWordsStore} from '../store/loveWords'
-import axios from 'axios'
+import { useLoveWordsStore } from '../store/loveWords'
+
 
 const loveWordsStore = useLoveWordsStore();
 console.log(loveWordsStore.words);
@@ -20,15 +20,12 @@ loveWordsStore.$subscribe((mutate, state) => {
 	localStorage.setItem('loveWords', JSON.stringify(state.words))
 })
 
+	function addOne() {
+		loveWordsStore.getTalk();
+	}
 
 
-async function addOne() {
-	// 连续解构 + 重命名
-	let { data:res } = await axios.get('https://international.v1.hitokoto.cn/')
-	
-	let obj = { "id": res.id, "hitokoto": res.hitokoto, "from": res.from} 
-	loveWordsStore.words.unshift(obj)
-}
+
 
 </script>
 
