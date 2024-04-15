@@ -16,5 +16,10 @@ export const useCountStore = defineStore('count', {
 		return {
 			sum:0
 		}
+	},
+	getters: {
+		//getters可以对state里的属性进行处理后再返回
+		bigSum:state => state.sum * 2
 	}
+	
 })
