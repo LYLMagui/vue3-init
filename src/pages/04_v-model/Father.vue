@@ -2,12 +2,14 @@
   <div class="father">
     <h3>父组件</h3>
     <!-- v-model等效于下面的写法 -->
-    <AtguiguInput v-model="username"/>
+    <AtguiguInput v-model:username="username" v-model:password="password" />
 
 
     <!-- <AtguiguInput 
     :modelValue="username"
     @update:model-value="username = $event"/> -->
+
+
 
   </div>
 </template>
@@ -17,6 +19,7 @@ import {ref} from 'vue'
 import AtguiguInput from './AtguiguInput.vue';
 
 const username = ref('123');
+const password = ref('456');
 	
 </script>
 
