@@ -1,11 +1,25 @@
 <template>
   <div class="father">
     <h3>父组件</h3>
-    <Category>
-      <ul>
-        <li v-for="(name,index) in games" :key="index">{{ name.gname }}</li>
-      </ul>
-    </Category>
+      <Category>
+        <!-- 具名插槽第一种写法 -->
+        <template v-slot:s1>
+          <ul>
+            <li v-for="(name, index) in games" :key="index">{{ name.gname }}</li>
+          </ul>
+        </template>
+      </Category>
+
+      <Category>
+        <!-- 具名插槽第二种写法-简写 -->
+        <template #s2>
+          <ul>
+            <li v-for="(num,index) in number" :key="index">{{ num }}</li>
+          </ul>
+        </template>
+      </Category>
+
+
   </div>
 </template>
 
@@ -21,6 +35,8 @@ const games = reactive([{
   }, {
   gname:'魔兽世界'
   }])
+
+  const number = ref([1,2,3,4,5])
 
 
 

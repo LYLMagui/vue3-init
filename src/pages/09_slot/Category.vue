@@ -1,6 +1,7 @@
 <template>
   <div class="category">
-    <slot></slot>
+    <slot name="s1"></slot>
+    <slot name="s2">默认插槽</slot>
   </div>
 </template>
 
@@ -16,5 +17,7 @@
     padding: 10px;
     width: 200px;
     height: 300px;
+    margin-bottom: 10px;
   }
+
 </style>
