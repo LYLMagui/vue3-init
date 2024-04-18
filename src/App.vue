@@ -18,7 +18,8 @@
 					provide、inject</router-link>
 				<router-link active-class="active" class="list-group-item" to="/pinia">8. pinia</router-link>
 				<router-link active-class="active" class="list-group-item" to="/slot">9. slot</router-link>
-				<router-link active-class="active" class="list-group-item" to="/slot_name">9. slot_具名插槽</router-link>
+				<router-link active-class="active" class="list-group-item" to="/slot_name">10. slot_具名插槽</router-link>
+				<router-link active-class="active" class="list-group-item" to="/slot_scope">11 . slot_作用域插槽</router-link>
 			</div>
 			<div class="col-xs-9 col-md-9 col-lg-9 col-xl-9">
 				<div class="panel-body">

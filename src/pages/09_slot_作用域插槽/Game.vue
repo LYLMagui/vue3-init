@@ -1,18 +1,17 @@
 <template>
   <div class="game">
-    <h2>游戏列表</h2>
-    <slot :youxi="games" x="哈哈" y="你好"></slot>
+    <slot name="ul" :games="games"></slot>
   </div>
 </template>
 
 <script setup lang="ts" name="Game">
-  import {reactive} from 'vue'
-  let games = reactive([
-    {id:'asgytdfats01',name:'英雄联盟'},
-    {id:'asgytdfats02',name:'王者农药'},
-    {id:'asgytdfats03',name:'红色警戒'},
-    {id:'asgytdfats04',name:'斗罗大陆'}
-  ])
+import { reactive } from 'vue'
+
+const games = reactive([
+  {id:"qwer01",name:"原神"},
+  {id:"qwer02",name:"王者荣耀"},
+  {id:"qwer03",name:"永劫无间"}
+])
 </script>
 
 <style scoped>
